@@ -1,6 +1,6 @@
 # NIA project website
 
-Большое спасибо - https://github.com/JoCat
+Thanks / Большое спасибо - https://github.com/JoCat
 
 
 Site / сайт - https://web.mirror-sky.xyz/clients
