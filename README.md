@@ -1,8 +1,6 @@
 # NIA project website
 
-
-
-vscode
+Большое спасибо - https://github.com/JoCat
 
 ## Project setup
 ```
