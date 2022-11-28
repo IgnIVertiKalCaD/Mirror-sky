@@ -247,7 +247,7 @@ ul {
 .container-md,
 .container-sm,
 .container {
-  max-width: 80% !important;
+  max-width: 90% !important;
 }
 .vr {
   margin: 0 10px;
@@ -257,4 +257,19 @@ ul {
 }
 .mtc-4 {
   margin-top: 2.5rem !important;
+}
+.row-flex {
+  display: flex;
+}
+.description-social-li {
+  display: flex;
+}
+.description-gravit-launhcer {
+  text-align: center;
+}
+.description-user {
+  margin-top: 3%;
+}
+.row {
+  justify-content: center;
 }

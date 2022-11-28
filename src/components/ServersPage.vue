@@ -70,7 +70,7 @@
             <b-card-text>
               <div class="row">
                 <div
-                  class="col-sm-6"
+                  class="col-sm-6" style="width: 13.5%;"
                   v-for="(card, index) in official_links"
                   :key="index"
                 >
@@ -89,10 +89,10 @@
 </template>
 
 <script>
-import axios from "axios";
 import serverCard from "./ServerCard.vue";
 import overlayCardServer from "./overlayCardServer.vue";
 import OfficialLinkPage from "./OfficialLinkPage.vue";
+import getInfoServersForGravit from "@/assets/helpers/getInfoServersSORC"
 
 export default {
   name: "ServersPage",
@@ -103,66 +103,24 @@ export default {
   },
   async mounted() {
     let versionsServer529 = {
-      "1.7.10": await getInfoServersFor528("1.7.10"),
-      "1.8.9": await getInfoServersFor528("1.8.9"),
-      "1.12.2": await getInfoServersFor528("1.12.2"),
-      "1.16.5": await getInfoServersFor528("1.16.5"),
-      "1.17.1": await getInfoServersFor528("1.17.1"),
-      "1.18.2": await getInfoServersFor528("1.18.2"),
-      1.19: await getInfoServersFor528("1.19"),
+      "1.7.10": await getInfoServersForGravit('Gravit5.2.9%2B/','server/','1.7.10'),
+      "1.8.9":  await getInfoServersForGravit('Gravit5.2.9%2B/','server/','1.8.9'),
+      "1.12.2": await getInfoServersForGravit('Gravit5.2.9%2B/','server/','1.12.2'),
+      "1.16.5": await getInfoServersForGravit('Gravit5.2.9%2B/','server/','1.16.5'),
+      "1.17.1": await getInfoServersForGravit('Gravit5.2.9%2B/','server/','1.17.1'),
+      "1.18.2": await getInfoServersForGravit('Gravit5.2.9%2B/','server/','1.18.2'),
+      "1.19":   await getInfoServersForGravit('Gravit5.2.9%2B/','server/','1.19'),
     };
-
-    async function getInfoServersFor528(versionsServer) {
-      const link = `https://mirror-sky.xyz/Gravit5.2.9%2B/server/${versionsServer}/`;
-      const response = await axios.get(link);
-
-      const parser = new DOMParser();
-      const content = parser.parseFromString(response.data, "text/html");
-
-      const links = [
-        ...content
-          .querySelector("pre")
-          .innerHTML.matchAll(
-            /<a href="(.+(\.[\w]{2,4}|\/))">(.+)<\/a>\s+([\w-]+\s[\d:]+)\s+([\d]+[K|M]?|-)/g
-          ),
-      ];
-      return links.map((_link) => ({
-        title: _link[3],
-        link: link + _link[1],
-        size: _link[5],
-      }));
-    }
-
     let versionsServer530 = {
-      "1.12.2": await getInfoServersFor530("1.12.2"),
-      "1.19.2": await getInfoServersFor530("1.19.2"),
+      "1.12.2": await getInfoServersForGravit('5.3.0%2B/','server/','1.12.2'),
+      "1.16.5": await getInfoServersForGravit('5.3.0%2B/','server/','1.16.5'),
+      "1.19.2": await getInfoServersForGravit('5.3.0%2B/','server/','1.19.2'),
     };
-
-    async function getInfoServersFor530(versionsServer) {
-      const link = `https://mirror-sky.xyz/5.3.0%2B/server/${versionsServer}/`;
-      const response = await axios.get(link);
-
-      const parser = new DOMParser();
-      const content = parser.parseFromString(response.data, "text/html");
-
-      const links = [
-        ...content
-          .querySelector("pre")
-          .innerHTML.matchAll(
-            /<a href="(.+(\.[\w]{2,4}|\/))">(.+)<\/a>\s+([\w-]+\s[\d:]+)\s+([\d]+[K|M]?|-)/g
-          ),
-      ];
-      return links.map((_link) => ({
-        title: _link[3],
-        link: link + _link[1],
-        size: _link[5],
-      }));
-    }
-
+    this.versionServersForLauncher530 = versionsServer530
+    this.versionServersForLauncher529 = versionsServer529
     this.show = false;
     this.showMainListsServers = true;
-    this.versionServersForLauncher529 = versionsServer529;
-    this.versionServersForLauncher530 = versionsServer530;
+
   },
   data() {
     return {
@@ -223,8 +181,10 @@ export default {
           official_link: "https://github.com/pufferfish-gg/Pufferfish",
         },
       ],
+      VGL: null,
       showMainListsServers: false,
       show: true,
+      cachedListServers: null,
     };
   },
 };
