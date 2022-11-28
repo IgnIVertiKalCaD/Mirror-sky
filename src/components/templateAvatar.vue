@@ -1,10 +1,11 @@
 <template>
-  <b-card-img :src="url_picture" alt="Image" class="rounded igni"></b-card-img>
+  <b-card-img :src="url_picture" alt="Image" :class="'rounded ' + name"></b-card-img>
+  <div class="corrector">
   <h3>{{ name }}</h3>
   <h3>{{ about }}</h3>
   <b-card-text>
     <ul class="description-social">
-      <li style="display: flex">
+      <li style="display: flex;justify-content: center;">
         <a
           v-if="url_youtube"
           :href="url_youtube"
@@ -29,6 +30,7 @@
       </li>
     </ul>
   </b-card-text>
+  </div>
 </template>
 
 <script>

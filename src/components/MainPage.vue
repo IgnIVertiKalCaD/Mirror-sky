@@ -32,7 +32,7 @@
           href="https://discord.gg/CKTAg7qjxX"
           class="nav-link text-white social"
         >
-          <BootstrapIcon class="bi d-block mgl" icon="discord" size="2x" />
+          <BootstrapIcon class="bi d-block" icon="discord" size="2x" />
         </a>
       </li>
       <li>
@@ -40,7 +40,7 @@
           href="https://github.com/GravitLauncher/Launcher"
           class="nav-link text-white social"
         >
-          <BootstrapIcon class="bi d-block mgl" icon="github" size="2x" />
+          <BootstrapIcon class="bi d-block" icon="github" size="2x" />
         </a>
       </li>
     </ul>
@@ -58,7 +58,7 @@ export default {
     return {
       Users: [
         {
-          name: "IgnI VertiCalKad",
+          name: "IgnI",
           about: "Разработчик",
           url_picture: "https://cdn.discordapp.com/avatars/709479393302675496/b62e01250f65f7db6e3c949801e6d673.webp?size=1024",
           discord: "https://discord.com/users/709479393302675496",
