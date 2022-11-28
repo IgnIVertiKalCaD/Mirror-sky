@@ -70,10 +70,10 @@
 </template>
 
 <script>
-import axios from "axios";
 import serverCard from "./ServerCard.vue";
 import overlayCardClient from "./overlayCardClient.vue";
 import OfficialLinkPage from "./OfficialLinkPage.vue";
+import getInfoClientsForGravit from "@/assets/helpers/getInfoSORC"
 
 export default {
   name: "ClientsPage",
@@ -85,70 +85,17 @@ export default {
   async mounted() {
 
     let BuildClients529 = {
-      "Forge": await getInfoClientsFor528(/forge/),
-      "Fabric": await getInfoClientsFor528(/fabric/),
-      "Vanilla": await getInfoClientsFor528(/vanilla/),
+      "Forge": await getInfoClientsForGravit('Gravit5.2.9%2B/','clients/','', /forge/),
+      "Fabric": await getInfoClientsForGravit('Gravit5.2.9%2B/','clients/','', /fabric/),
+      "Vanilla": await getInfoClientsForGravit('Gravit5.2.9%2B/','clients/','', /vanilla/),
     };
 
-    async function getInfoClientsFor528(validator) {
-      const link = `https://mirror-sky.xyz/Gravit5.2.9%2B/clients/`;
-      const response = await axios.get(link);
-
-      const parser = new DOMParser();
-      const content = parser.parseFromString(response.data, "text/html");
-
-      const links = [
-        ...content
-          .querySelector("pre")
-          .innerHTML.matchAll(
-            /<a href="(.+(\.[\w]{2,4}|\/))">(.+)<\/a>\s+([\w-]+\s[\d:]+)\s+([\d]+[K|M]?|-)/g
-          ),
-      ];
-      const testLinks =  links.map((_link) => ({
-        title: _link[3],
-        link: link + _link[1],
-        size: _link[5]
-      }))
-
-      return testLinks.filter(workedLink => {
-        if (workedLink.title.match(validator)) {
-          return true
-        }
-      })
-    }
-
+   
     let BuildClients530 = {
-      "Forge": await getInfoClientsFor530(/forge/),
-      "Fabric": await getInfoClientsFor530(/fabric/),
-      "Vanilla": await getInfoClientsFor530(/vanilla/),
+      "Forge": await getInfoClientsForGravit('5.3.0%2B/','clients/','', /forge/),
+      "Fabric": await getInfoClientsForGravit('5.3.0%2B/','clients/','', /fabric/),
+      "Vanilla": await getInfoClientsForGravit('5.3.0%2B/','clients/','', /vanilla/),
     };
-
-    async function getInfoClientsFor530(validator) {
-      const link = `https://mirror-sky.xyz/5.3.0%2B/clients/`;
-      const response = await axios.get(link);
-
-      const parser = new DOMParser();
-      const content = parser.parseFromString(response.data, "text/html");
-
-      const links = [
-        ...content
-          .querySelector("pre")
-          .innerHTML.matchAll(
-            /<a href="(.+(\.[\w]{2,4}|\/))">(.+)<\/a>\s+([\w-]+\s[\d:]+)\s+([\d]+[K|M]?|-)/g
-          ),
-      ];
-      const testLinks =  links.map((_link) => ({
-        title: _link[3],
-        link: link + _link[1],
-        size: _link[5]
-      }))
-
-      return testLinks.filter(workedLink => {
-        if (workedLink.title.match(validator)) {
-          return true
-        }
-      })
-    }
     
     this.show = false
     this.showMainListsServers = true
