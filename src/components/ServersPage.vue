@@ -92,7 +92,7 @@
 import serverCard from "./ServerCard.vue";
 import overlayCardServer from "./overlayCardServer.vue";
 import OfficialLinkPage from "./OfficialLinkPage.vue";
-import getInfoServersForGravit from "@/assets/helpers/getInfoServersSORC"
+import getInfoServersForGravit from "@/assets/helpers/getInfoSORC"
 
 export default {
   name: "ServersPage",
