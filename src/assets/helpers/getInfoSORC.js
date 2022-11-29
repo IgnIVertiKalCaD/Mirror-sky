@@ -1,11 +1,6 @@
-import axios from "axios"
+import axios from "axios";
 
-async function getInfoSORC(
-  versionGravit,
-  ServerOrClients,
-  version,
-  validator
-) {
+async function getInfoSORC(versionGravit, ServerOrClients, version, validator) {
   const link = `https://mirror-sky.xyz/${versionGravit}${ServerOrClients}${version}/`;
   const response = await axios.get(link);
   const parser = new DOMParser();
@@ -31,4 +26,4 @@ async function getInfoSORC(
       }
     });
 }
-export default getInfoSORC
+export default getInfoSORC;

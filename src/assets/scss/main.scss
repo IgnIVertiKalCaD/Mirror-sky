@@ -7,6 +7,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@100;200;300;400;500;600;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
 
+:root {
+	--hue: 223;
+	--bg: hsl(var(--hue),90%,95%);
+	--fg: hsl(var(--hue),90%,5%);
+	--trans-dur: 0.3s;
+}
+
 html {
   height: 1% !important;
 }
@@ -147,7 +154,7 @@ footer {
 }
 
 /**
-//мне пиздец понравилось. Потом сделай// Сделал пизжу -
+//мне пиздец понравилось. Потом сделай// Сделал пизже -
 z-body {
   background: #135796;
   animation: slidein 1s;
@@ -177,64 +184,67 @@ z-body {
   right: 0;
   bottom: 0;
 }
-.preloader .logo {
-  width: 12.5rem;
-  height: 19.5rem;
-  scale: 0.5;
-  background-image: url("~@/assets/logo.png");
-  background-repeat: no-repeat;
-}
 p {
   font: 600 1.5rem;
   margin-top: 1rem;
 }
-.preloader .circles {
-  display: flex;
-  margin-top: 1rem;
-}
-.preloader .circles .circle {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin: 0.75rem;
-  background-color: #cc66db;
-  border-radius: 50%;
-  animation-name: scaleIn;
-  animation-iteration-count: infinite;
-  animation-duration: 1.5s;
-  transform: scale(0);
-}
-.circle:nth-child(1) {
-  animation-delay: 0s;
-}
-.circle:nth-child(2) {
-  animation-delay: 0.1s;
-  background-color: #c665d4 !important;
-}
-.circle:nth-child(3) {
-  animation-delay: 0.2s;
-  background-color: #af55bb !important;
-}
-.circle:nth-child(4) {
-  animation-delay: 0.3s;
-  background-color: #a04bac !important;
-}
-.circle:nth-child(5) {
-  animation-delay: 0.4s;
-  background-color: #7e3788 !important;
-}
-@keyframes scaleIn {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0);
-  }
-}
 
 
+.ip {
+	width: 16em;
+	height: 8em;
+}
+.ip__track {
+	stroke: hsl(var(--hue),90%,90%);
+	transition: stroke var(--trans-dur);
+}
+.ip__worm1,
+.ip__worm2 {
+	animation: worm1 2s linear infinite;
+}
+.ip__worm2 {
+	animation-name: worm2;
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: hsl(var(--hue),90%,5%);
+		--fg: hsl(var(--hue),90%,95%);
+	}
+	.ip__track {
+		stroke: hsl(var(--hue),90%,15%);
+	}
+}
+
+/* Animation */
+@keyframes worm1 {
+	from {
+		stroke-dashoffset: 0;
+	}
+	50% {
+		animation-timing-function: steps(1);
+		stroke-dashoffset: -358;
+	}
+	50.01% {
+		animation-timing-function: linear;
+		stroke-dashoffset: 358;
+	}
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+@keyframes worm2 {
+	from {
+		stroke-dashoffset: 358;
+	}
+	50% {
+		stroke-dashoffset: 0;
+	}
+	to {
+		stroke-dashoffset: -358;
+	}
+}
 
 /**Anti bootstrap**/
 ol,

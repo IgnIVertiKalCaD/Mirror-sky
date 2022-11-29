@@ -47,7 +47,10 @@
             </li>
             <div class="vr"></div>
             <li>
-              <a href="https://discord.gg/naTFAzB45f" class="nav-link text-white">
+              <a
+                href="https://discord.gg/naTFAzB45f"
+                class="nav-link text-white"
+              >
                 <BootstrapIcon
                   class="bi d-block mx-auto mb-1"
                   icon="discord"
@@ -85,8 +88,6 @@
 </template>
 
 <script>
-
-
 export default {
   name: "MainHeader",
 };
