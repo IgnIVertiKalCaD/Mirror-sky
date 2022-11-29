@@ -3,13 +3,14 @@
     <h1 class="top_header mt-4">Готовые сервера для Gravit 5.2.9 - 5.2.13</h1>
     <div>
       <b-overlay :show="show" rounded="sm" class="CS">
-        <overlayCardServer v-if="show" />
+        <overlay v-if="show" />
         <b-card no-body v-show="showMainListsServers">
           <b-tabs pills card>
             <b-tab
               v-for="(baseCard, index) of versionServersForLauncher529"
               :key="index"
               :title="index"
+              class="corrector_card"
               active
             >
               <b-card-text>
@@ -33,13 +34,14 @@
       </b-overlay>
       <h1 class="top_header mtc-4">Готовые сервера для Gravit 5.3.0 - 5.3.x</h1>
       <b-overlay :show="show" rounded="sm" class="CS">
-        <overlayCardServer v-if="show" />
+        <overlay v-if="show" />
         <b-card no-body v-show="showMainListsServers">
           <b-tabs pills card>
             <b-tab
               v-for="(baseCard, index) of versionServersForLauncher530"
               :key="index"
               :title="index"
+              class="corrector_card"
               active
             >
               <b-card-text>
@@ -66,11 +68,12 @@
       </h1>
       <b-card no-body>
         <b-tabs pills card>
-          <b-tab title="Официальные ссылки">
+          <b-tab title="Официальные ссылки" class="corrector_card">
             <b-card-text>
               <div class="row">
                 <div
-                  class="col-sm-6" style="width: 13.5%;"
+                  class="col-sm-6"
+                  style="width: 21.5%"
                   v-for="(card, index) in official_links"
                   :key="index"
                 >
@@ -90,37 +93,60 @@
 
 <script>
 import serverCard from "./ServerCard.vue";
-import overlayCardServer from "./overlayCardServer.vue";
+import overlay from "./templateOverlay.vue";
 import OfficialLinkPage from "./OfficialLinkPage.vue";
-import getInfoServersForGravit from "@/assets/helpers/getInfoSORC"
+import getInfoServersForGravit from "@/assets/helpers/getInfoSORC";
 
 export default {
   name: "ServersPage",
   components: {
     serverCard,
     OfficialLinkPage,
-    overlayCardServer,
+    overlay,
   },
   async mounted() {
     let versionsServer529 = {
-      "1.7.10": await getInfoServersForGravit('Gravit5.2.9%2B/','server/','1.7.10'),
-      "1.8.9":  await getInfoServersForGravit('Gravit5.2.9%2B/','server/','1.8.9'),
-      "1.12.2": await getInfoServersForGravit('Gravit5.2.9%2B/','server/','1.12.2'),
-      "1.16.5": await getInfoServersForGravit('Gravit5.2.9%2B/','server/','1.16.5'),
-      "1.17.1": await getInfoServersForGravit('Gravit5.2.9%2B/','server/','1.17.1'),
-      "1.18.2": await getInfoServersForGravit('Gravit5.2.9%2B/','server/','1.18.2'),
-      "1.19":   await getInfoServersForGravit('Gravit5.2.9%2B/','server/','1.19'),
+      "1.7.10": await getInfoServersForGravit(
+        "Gravit5.2.9%2B/",
+        "server/",
+        "1.7.10"
+      ),
+      "1.8.9": await getInfoServersForGravit(
+        "Gravit5.2.9%2B/",
+        "server/",
+        "1.8.9"
+      ),
+      "1.12.2": await getInfoServersForGravit(
+        "Gravit5.2.9%2B/",
+        "server/",
+        "1.12.2"
+      ),
+      "1.16.5": await getInfoServersForGravit(
+        "Gravit5.2.9%2B/",
+        "server/",
+        "1.16.5"
+      ),
+      "1.17.1": await getInfoServersForGravit(
+        "Gravit5.2.9%2B/",
+        "server/",
+        "1.17.1"
+      ),
+      "1.18.2": await getInfoServersForGravit(
+        "Gravit5.2.9%2B/",
+        "server/",
+        "1.18.2"
+      ),
+      1.19: await getInfoServersForGravit("Gravit5.2.9%2B/", "server/", "1.19"),
     };
     let versionsServer530 = {
-      "1.12.2": await getInfoServersForGravit('5.3.0%2B/','server/','1.12.2'),
-      "1.16.5": await getInfoServersForGravit('5.3.0%2B/','server/','1.16.5'),
-      "1.19.2": await getInfoServersForGravit('5.3.0%2B/','server/','1.19.2'),
+      "1.12.2": await getInfoServersForGravit("5.3.0%2B/", "server/", "1.12.2"),
+      "1.16.5": await getInfoServersForGravit("5.3.0%2B/", "server/", "1.16.5"),
+      "1.19.2": await getInfoServersForGravit("5.3.0%2B/", "server/", "1.19.2"),
     };
-    this.versionServersForLauncher530 = versionsServer530
-    this.versionServersForLauncher529 = versionsServer529
+    this.versionServersForLauncher530 = versionsServer530;
+    this.versionServersForLauncher529 = versionsServer529;
     this.show = false;
     this.showMainListsServers = true;
-
   },
   data() {
     return {
@@ -193,7 +219,6 @@ export default {
 <style lang="scss">
 @import "../assets/scss/ServerCard.scss";
 @import "../assets/scss/AboutPage.scss";
-
 .position-absolute.bg-light.rounded-sm {
   opacity: 0.75;
   box-shadow: 0px 0px 20px 0px #1e083e;

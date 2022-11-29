@@ -229,7 +229,29 @@ figure:hover:before {
 .card {
   border: none !important;
 }
-.row {
+@media (min-width: 1001px) {
+  .row {
+    flex-direction: row;
+  }
+}
+@media (max-width: 1001px) {
+  .row {
+    flex-direction: column;
+  }
+}
+@media (min-width: 620px) {
+  .rounded {
+    border-radius: 35px !important;
+  }
+}
+@media (max-width: 620px) {
+  .rounded {
+    border: 2px solid #FFF;
+    border-radius: 50px !important;
+  }
+}
+.rounded {
+  transition: all 0.5s;
 }
 .social {
   display: flex;
@@ -258,10 +280,7 @@ ul {
     transform: translateY(-20px);
   }
 }
-.rounded {
-  border-radius: 30px !important;
-  transition: all 0.5s;
-}
+
 .custom-main-card {
   border-radius: 30px;
   background: rgb(31, 19, 51);
