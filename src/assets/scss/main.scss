@@ -1,18 +1,13 @@
 @import "../scss/background.scss";
-@import "../scss/variables.scss";
-@import "../scss/AboutPage.scss";
-@import "../scss/Media.scss";
+@import "../scss/other/variables.scss";
+@import "../scss/pages/skeletPages.scss";
+@import "../scss/media.scss";
 
 
 @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@100;200;300;400;500;600;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
 
-:root {
-	--hue: 223;
-	--bg: hsl(var(--hue),90%,95%);
-	--fg: hsl(var(--hue),90%,5%);
-	--trans-dur: 0.3s;
-}
+
 
 html {
   height: 1% !important;
@@ -46,7 +41,7 @@ a {
 }
 
 .header {
-  margin: 10px 5%;
+  margin: 10px 5% !important;
   border-radius: 60px;
   background-color: rgb(31, 19, 51);
   font-weight: bold;

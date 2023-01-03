@@ -14,7 +14,7 @@
 </template>
 <script>
 export default {
-  name: "ServerCard",
+  name: "SORCCard",
   props: {
     text_size: String,
     mirror_link: String,
@@ -23,3 +23,8 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/scss/cards/SORCCard.scss";
+
+</style>

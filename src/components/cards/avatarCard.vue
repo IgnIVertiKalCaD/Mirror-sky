@@ -55,9 +55,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/scss/MainPage.scss";
 h3 {
   text-align: center;
   margin-top: 15px;
+}
+.card-img {
+  border-radius: 35px !important;
 }
 </style>
