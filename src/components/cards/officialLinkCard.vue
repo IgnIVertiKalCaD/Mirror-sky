@@ -15,3 +15,8 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/scss/cards/SORCCard.scss";
+
+</style>

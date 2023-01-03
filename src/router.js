@@ -1,9 +1,11 @@
-import { createWebHistory, createRouter } from "vue-router";
+import { createWebHistory, createRouter } from "vue-router"
 
-const MainPage = () => import("./components/MainPage.vue");
-const ServersPage = () => import("./components/ServersPage.vue");
-const ClientsPage = () => import("./components/ClientsPage.vue");
-const UnloadFilesPage = () => import("./components/uploadFiles.vue");
+const MainPage = () => import("@/components/pages/mainPage.vue")
+const ServersPage = () => import("@/components/pages/serversPage.vue")
+const ClientsPage = () => import("@/components/pages/clientsPage.vue")
+const UnloadFilesPage = () => import("@/components/pages/uploadFilesPage.vue")
+const CatalogPAge = () => import("@/components/pages/catalogPage.vue")
+const mainAdmin = () => import("@/components/pages/admin/mainPage.vue")
 
 const routes = [
   {
@@ -26,6 +28,14 @@ const routes = [
   {
     path: "/upload",
     component: UnloadFilesPage,
+  },
+  {
+    path: "/catalog",
+    component: CatalogPAge,
+  },
+  {
+    path: "/admin",
+    component: mainAdmin,
   },
   //   { path: '/:pathMatch(.*)*', component: error404 },
 ];

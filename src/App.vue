@@ -70,6 +70,9 @@ export default {
       show: true,
     };
   },
+  created() {
+    window.addEventListener("beforeunload", this.leaving);
+  },
   mounted() {
     if (this.show) this.showToggle();
   },
@@ -79,6 +82,11 @@ export default {
         this.show = false;
       }, 1000);
     },
+    leaving() {
+      if (localStorage) {
+        localStorage.clear();
+      }
+    },
   },
 };
 </script>
@@ -86,10 +94,4 @@ export default {
 <style lang="scss">
 @import "../src/assets/scss/main.scss";
 
-.mb-vk {
-  fill: rgb(255, 255, 255);
-}
-.mb-vk:hover {
-  fill: rgb(0, 0, 0);
-}
 </style>

@@ -4,7 +4,7 @@
       <section class="mb-0">
         <a
           class="btn btn-outline-light btn-floating m-0"
-          href="https://discord.gg/b8wkfbefQa"
+          href="https://discord.gg/"
           role="button"
           ><BootstrapIcon
             class="bi d-block mx-auto mb-0 mb-discord"

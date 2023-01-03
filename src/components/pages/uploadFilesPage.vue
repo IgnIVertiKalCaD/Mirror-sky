@@ -18,7 +18,7 @@
           @click="enterOrDownload"
         >
           <th scope="row">{{ index }}</th>
-          <td>{{ item.name }}</td>
+          <td>{{ item.fullName }}</td>
           <td>{{ item.extension }}</td>
           <td v-if="item.size != 4096">{{ item.size }}</td>
         </tr>
@@ -29,9 +29,9 @@
 
 <script>
 import path from "path-browserify";
-import serverCard from "./ServerCard.vue";
-import overlay from "./templateOverlay.vue";
-import OfficialLinkPage from "./OfficialLinkPage.vue";
+import serverCard from "../cards/SORCCard.vue";
+import overlay from "../cards/templateOverlay.vue";
+import OfficialLinkPage from "../cards/officialLinkCard.vue";
 import transition from "@/assets/helpers/Transition";
 
 export default {
@@ -48,61 +48,6 @@ export default {
       listenerViewerFiles: "/list?path=",
       listenerDownloaderFile: "/download?file=",
       listFiles: [],
-      official_links: [
-        {
-          title: "Crucible",
-          official_link: "https://github.com/CrucibleMC/Crucible",
-        },
-        {
-          title: "Mohist",
-          official_link: "https://mohistmc.com/",
-        },
-        {
-          title: "Magma",
-          official_link: "https://magmafoundation.org/",
-        },
-        {
-          title: "Thermos",
-          official_link: "https://cyberdynecc.github.io/Thermos/install",
-        },
-        {
-          title: "Vanilla",
-          official_link: "https://www.minecraft.net/en-us/download/server",
-        },
-        {
-          title: "CatServer",
-          official_link: "https://catmc.org/",
-        },
-        {
-          title: "Airplane",
-          official_link: "https://github.com/TECHNOVE/Airplane",
-        },
-        {
-          title: "Akarin",
-          official_link: "https://github.com/Akarin-project/Akarin",
-        },
-        {
-          title: "Fabric",
-          official_link: "https://fabricmc.net/use/server/",
-        },
-        {
-          title: "Forge",
-          official_link:
-            "https://files.minecraftforge.net/net/minecraftforge/forge/",
-        },
-        {
-          title: "Paper",
-          official_link: "https://papermc.io/",
-        },
-        {
-          title: "Tuinity",
-          official_link: "https://github.com/Tuinity/Tuinity",
-        },
-        {
-          title: "Pufferfish",
-          official_link: "https://github.com/pufferfish-gg/Pufferfish",
-        },
-      ],
       cachedList: null,
       uploader: null,
       promise: null,
@@ -120,9 +65,12 @@ export default {
   },
   methods: {
     async enterOrDownload(e) {
-      this.path = e.currentTarget.getAttribute("href");
+      this.path = e.currentTarget.getAttribute("href")
       if (path.extname(this.path)) {
-        console.log("Downloading");
+        await this.transition.downloadWithAxios(
+          this.baseUrl + this.listenerDownloaderFile + this.path,
+          this.path.substring(1)
+        );
       } else {
         this.listFiles = await this.transition.getInfoWithAxios(
           this.baseUrl,
@@ -132,9 +80,13 @@ export default {
       }
     },
     async Forward() {
-      console.log(this.path);
-      var lastIndex = this.path.substring(0, this.path.lastIndexOf(" "));
-      this.path = lastIndex;
+      var lastIndex = this.path.split("/").slice(0, -1).join("/")
+      this.path = lastIndex
+      this.listFiles = await this.transition.getInfoWithAxios(
+        this.baseUrl,
+        this.listenerViewerFiles,
+        this.path
+      );
     },
   },
   watch: {
@@ -146,8 +98,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/scss/ServerCard.scss";
-@import "../assets/scss/AboutPage.scss";
+// @card-bodyimport "@/assets/scss//SORCCard.scss";
 
 .position-absolute.bg-light.rounded-sm {
   opacity: 0.75;

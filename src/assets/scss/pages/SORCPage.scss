@@ -1,0 +1,72 @@
+
+.tabs {
+  border-radius: 30px;
+  background: #1f1333;
+}
+
+.row {
+  flex-direction: row;
+}
+.col-sm-6 {
+  width: 28.5%;
+}
+
+.btn {
+  font-weight: bold;
+  padding: 15px 20px !important;
+}
+.btn-primary {
+  width: -moz-available;
+  border-radius: 30px !important;
+}
+
+.card-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.card-header .nav {
+  justify-content: center;
+  margin-bottom: 3px;
+}
+.nav-pills .nav-link {
+  border-radius: 3.25rem;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 18px 25px !important;
+}
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: #3c2a59;
+}
+.card-header .nav-link {
+  color: rgb(230, 230, 230);
+  &:hover {
+    background-color: #2b1e41;
+    color: white;
+    margin: 0 10px;
+    transform: scale(1.05);
+  }
+  &:active {
+    color: white;
+    transition: 0.1s !important;
+    transform: scale(1);
+  }
+  &:focus {
+    color: white;
+  }
+}
+
+.position-absolute.bg-light.rounded-sm {
+  opacity: 0.75;
+  box-shadow: 0px 0px 20px 0px #1e083e;
+  border-radius: 30px;
+  background: #1f1233 !important;
+}
+.spinner-border {
+  width: 10rem;
+  height: 10rem;
+  border: 1.25em solid #5724ad;
+  border-right-color: #04040400;
+  animation: 0.5s linear infinite spinner-border;
+}

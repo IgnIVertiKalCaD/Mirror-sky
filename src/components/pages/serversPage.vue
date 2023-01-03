@@ -92,9 +92,9 @@
 </template>
 
 <script>
-import serverCard from "./ServerCard.vue";
-import overlay from "./templateOverlay.vue";
-import OfficialLinkPage from "./OfficialLinkPage.vue";
+import serverCard from "../cards/SORCCard.vue";
+import overlay from "../cards/templateOverlay.vue";
+import OfficialLinkPage from "../cards/officialLinkCard.vue";
 import getInfoServersForGravit from "@/assets/helpers/getInfoSORC";
 
 export default {
@@ -103,50 +103,6 @@ export default {
     serverCard,
     OfficialLinkPage,
     overlay,
-  },
-  async mounted() {
-    let versionsServer529 = {
-      "1.7.10": await getInfoServersForGravit(
-        "Gravit5.2.9%2B/",
-        "server/",
-        "1.7.10"
-      ),
-      "1.8.9": await getInfoServersForGravit(
-        "Gravit5.2.9%2B/",
-        "server/",
-        "1.8.9"
-      ),
-      "1.12.2": await getInfoServersForGravit(
-        "Gravit5.2.9%2B/",
-        "server/",
-        "1.12.2"
-      ),
-      "1.16.5": await getInfoServersForGravit(
-        "Gravit5.2.9%2B/",
-        "server/",
-        "1.16.5"
-      ),
-      "1.17.1": await getInfoServersForGravit(
-        "Gravit5.2.9%2B/",
-        "server/",
-        "1.17.1"
-      ),
-      "1.18.2": await getInfoServersForGravit(
-        "Gravit5.2.9%2B/",
-        "server/",
-        "1.18.2"
-      ),
-      1.19: await getInfoServersForGravit("Gravit5.2.9%2B/", "server/", "1.19"),
-    };
-    let versionsServer530 = {
-      "1.12.2": await getInfoServersForGravit("5.3.0%2B/", "server/", "1.12.2"),
-      "1.16.5": await getInfoServersForGravit("5.3.0%2B/", "server/", "1.16.5"),
-      "1.19.2": await getInfoServersForGravit("5.3.0%2B/", "server/", "1.19.2"),
-    };
-    this.versionServersForLauncher530 = versionsServer530;
-    this.versionServersForLauncher529 = versionsServer529;
-    this.show = false;
-    this.showMainListsServers = true;
   },
   data() {
     return {
@@ -213,23 +169,77 @@ export default {
       cachedListServers: null,
     };
   },
+  async mounted() {
+    if (!localStorage.versionServersForLauncher529 && !localStorage.versionServersForLauncher530) {
+      let versionsServer529 = {
+        "1.7.10": await getInfoServersForGravit(
+          "Gravit5.2.9%2B/",
+          "server/",
+          "1.7.10"
+        ),
+        "1.8.9": await getInfoServersForGravit(
+          "Gravit5.2.9%2B/",
+          "server/",
+          "1.8.9"
+        ),
+        "1.12.2": await getInfoServersForGravit(
+          "Gravit5.2.9%2B/",
+          "server/",
+          "1.12.2"
+        ),
+        "1.16.5": await getInfoServersForGravit(
+          "Gravit5.2.9%2B/",
+          "server/",
+          "1.16.5"
+        ),
+        "1.17.1": await getInfoServersForGravit(
+          "Gravit5.2.9%2B/",
+          "server/",
+          "1.17.1"
+        ),
+        "1.18.2": await getInfoServersForGravit(
+          "Gravit5.2.9%2B/",
+          "server/",
+          "1.18.2"
+        ),
+        1.19: await getInfoServersForGravit("Gravit5.2.9%2B/", "server/", "1.19"),
+      };
+      let versionsServer530 = {
+        "1.12.2": await getInfoServersForGravit("5.3.0%2B/", "server/", "1.12.2"),
+        "1.16.5": await getInfoServersForGravit("5.3.0%2B/", "server/", "1.16.5"),
+        "1.19.2": await getInfoServersForGravit("5.3.0%2B/", "server/", "1.19.2"),
+      };
+      this.versionServersForLauncher530 = versionsServer530;
+      this.versionServersForLauncher529 = versionsServer529;
+    } else {
+      this.versionServersForLauncher529 = JSON.parse(localStorage.versionServersForLauncher529)
+      this.versionServersForLauncher530 = JSON.parse(localStorage.versionServersForLauncher530)
+
+    }
+    this.show = false;
+    this.showMainListsServers = true;
+  },
+  watch: {
+    versionServersForLauncher529(cacheVersionServersForLauncher529) {
+      localStorage.versionServersForLauncher529 = JSON.stringify(cacheVersionServersForLauncher529)
+    },
+    versionServersForLauncher530(cacheVersionServersForLauncher530) {
+      localStorage.versionServersForLauncher530 = JSON.stringify(cacheVersionServersForLauncher530)
+    }
+  }
+
 };
 </script>
 
+<style lang="scss" scoped>
+.card {
+  color: rgb(255, 255, 255);
+  border-radius: 35px;
+  border: none;
+  margin-top: 15px;
+  background-color: #2d1750;
+}
+</style>
 <style lang="scss">
-@import "../assets/scss/ServerCard.scss";
-@import "../assets/scss/AboutPage.scss";
-.position-absolute.bg-light.rounded-sm {
-  opacity: 0.75;
-  box-shadow: 0px 0px 20px 0px #1e083e;
-  border-radius: 30px;
-  background: #1f1233 !important;
-}
-.spinner-border {
-  width: 10rem;
-  height: 10rem;
-  border: 1.25em solid #5724ad;
-  border-right-color: #04040400;
-  animation: 0.5s linear infinite spinner-border;
-}
+@import "@/assets/scss/pages/SORCPage.scss";
 </style>

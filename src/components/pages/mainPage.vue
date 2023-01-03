@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import templateAvatar from "./templateAvatar.vue";
+import templateAvatar from "../cards/avatarCard.vue";
 export default {
   name: "MainHeader",
   components: {
@@ -87,8 +87,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/scss/MainPage.scss";
+@import "@/assets/scss/pages/mainPage.scss";
 strong {
   font-size: 18px;
+}
+</style>
+
+<style lang="scss">
+
+.rounded {
+  transition: all 0.5s;
+}
+.Null {
+  &:hover {
+    box-shadow: 0px 25px 50px -19px rgba(242, 191, 49, 0.75);
+    transform: translateY(-20px);
+  }
+}
+.IgnI {
+  &:hover {
+    box-shadow: 0px 25px 50px -19px #ffac8d;
+    transform: translateY(-20px);
+  }
+}
+.Krylovvv {
+  &:hover {
+    box-shadow: 0px 25px 50px -19px #5138a3;
+    transform: translateY(-20px);
+  }
 }
 </style>

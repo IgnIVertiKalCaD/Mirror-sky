@@ -1,0 +1,14 @@
+
+.position-absolute.bg-light.rounded-sm {
+    opacity: 0.75;
+    box-shadow: 0px 0px 20px 0px #1e083e;
+    border-radius: 30px;
+    background: #1f1233 !important;
+  }
+  .spinner-border {
+    width: 10rem;
+    height: 10rem;
+    border: 1.25em solid #5724ad;
+    border-right-color: #04040400;
+    animation: 0.5s linear infinite spinner-border;
+  }

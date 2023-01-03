@@ -15,7 +15,7 @@
           <ul
             class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small"
           >
-            <li>
+            <!-- <li>
               <router-link to="/home" class="nav-link text-white">
                 <BootstrapIcon
                   class="bi d-block mx-auto mb-1"
@@ -23,6 +23,16 @@
                   size="2x"
                 />
                 Главная
+              </router-link>
+            </li> -->
+            <li>
+              <router-link to="/catalog" class="nav-link text-white">
+                <BootstrapIcon
+                  class="bi d-block mx-auto mb-1"
+                  icon="view-list"
+                  size="2x"
+                />
+                Каталог
               </router-link>
             </li>
             <li>
@@ -59,7 +69,7 @@
                 Discord
               </a>
             </li>
-            <!-- <li>
+            <!--<li>
               <router-link to="/players" class="nav-link text-white">
                 <BootstrapIcon
                   class="bi d-block mx-auto mb-1"
@@ -68,16 +78,6 @@
                 />
                 <use xlink:href="#grid"></use>
                 Игрокам
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/about" class="nav-link text-white">
-                <BootstrapIcon
-                  class="bi d-block mx-auto mb-1"
-                  icon="arrow-down-circle"
-                  size="2x"
-                />
-                О проекте
               </router-link>
             </li> -->
           </ul>
