@@ -49,10 +49,15 @@
 
     <div class="background">
       <Header />
-      <router-view />
+      <router-view v-slot="{ Component, route }">
+        <Transition name="fade" mode="out-in">
+          <div :key="route.name">
+            <component :is="Component"></component>
+          </div>
+        </Transition>
+      </router-view>
 
-      <b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b
-      ><b></b><b></b><b></b><b></b>
+      <b v-for="(index) of countParticles" :key="index"></b>
     </div>
   </div>
 </template>
@@ -67,6 +72,7 @@ export default {
   },
   data() {
     return {
+      countParticles: 15,
       show: true,
     };
   },

@@ -1,18 +1,27 @@
 <template>
-  <div class="corrector_flex_catalog">
-    <sidebarCatalog v-model:title="search" />
-    <div class="container mt-3 right">
-      <div class="row flex-wrap justify-content-around">
+  <div class="container-fluid">
+    <div class="row flex-nowrap">
+    <sidebarCatalog v-model:title="search"/>
+    <div class="col py-3">
         <div
-          class="col-sm-2 sub-container-catalog-card"
-          v-for="(card, index) of filteredList"
-          :key="index"
+          v-if="mode == 'card'"
+          class="row"
+          :class="{ 'flex-wrap justify-content-around': mode == 'list', 'card-mode-flex': mode == 'card' }"
         >
-          <catalogCard :name="card.name" :official_link="card.official_link" />
-        </div>
+          <div
+            class="col-sm-2 sub-container-catalog-card"
+            v-for="(card, index) of filteredList"
+            :key="index"
+          >
+            <catalogCard
+              :name="card.name"
+              :official_link="card.official_link"
+            />
+          </div>
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -30,6 +39,7 @@ export default {
   },
   data() {
     return {
+      mode: "card",
       catalogList: [
         {
           name: "Crucible",
@@ -43,47 +53,47 @@ export default {
           name: "Magma",
           official_link: "https://magmafoundation.org/",
         },
-        {
-          name: "Thermos",
-          official_link: "https://cyberdynecc.github.io/Thermos/install",
-        },
-        {
-          name: "Vanilla",
-          official_link: "https://www.minecraft.net/en-us/download/server",
-        },
-        {
-          name: "CatServer",
-          official_link: "https://catmc.org/",
-        },
-        {
-          name: "Airplane",
-          official_link: "https://github.com/TECHNOVE/Airplane",
-        },
-        {
-          name: "Akarin",
-          official_link: "https://github.com/Akarin-project/Akarin",
-        },
-        {
-          name: "Fabric",
-          official_link: "https://fabricmc.net/use/server/",
-        },
-        {
-          name: "Forge",
-          official_link:
-            "https://files.minecraftforge.net/net/minecraftforge/forge/",
-        },
-        {
-          name: "Paper",
-          official_link: "https://papermc.io/",
-        },
-        {
-          name: "Tuinity",
-          official_link: "https://github.com/Tuinity/Tuinity",
-        },
-        {
-          name: "Pufferfish",
-          official_link: "https://github.com/pufferfish-gg/Pufferfish",
-        },
+        // {
+        //   name: "Thermos",
+        //   official_link: "https://cyberdynecc.github.io/Thermos/install",
+        // },
+        // {
+        //   name: "Vanilla",
+        //   official_link: "https://www.minecraft.net/en-us/download/server",
+        // },
+        // {
+        //   name: "CatServer",
+        //   official_link: "https://catmc.org/",
+        // },
+        // {
+        //   name: "Airplane",
+        //   official_link: "https://github.com/TECHNOVE/Airplane",
+        // },
+        // {
+        //   name: "Akarin",
+        //   official_link: "https://github.com/Akarin-project/Akarin",
+        // },
+        // {
+        //   name: "Fabric",
+        //   official_link: "https://fabricmc.net/use/server/",
+        // },
+        // {
+        //   name: "Forge",
+        //   official_link:
+        //     "https://files.minecraftforge.net/net/minecraftforge/forge/",
+        // },
+        // {
+        //   name: "Paper",
+        //   official_link: "https://papermc.io/",
+        // },
+        // {
+        //   name: "Tuinity",
+        //   official_link: "https://github.com/Tuinity/Tuinity",
+        // },
+        // {
+        //   name: "Pufferfish",
+        //   official_link: "https://github.com/pufferfish-gg/Pufferfish",
+        // },
       ],
       show: true,
       search: "",
@@ -93,10 +103,10 @@ export default {
   methods: {},
   computed: {
     filteredList() {
-      return this.catalogList.filter(card => {
-        return card.name.toLowerCase().includes(this.search.toLowerCase())
-      })
-    }
+      return this.catalogList.filter((card) => {
+        return card.name.toLowerCase().includes(this.search.toLowerCase());
+      });
+    },
   },
 };
 </script>

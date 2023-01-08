@@ -15,16 +15,6 @@
           <ul
             class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small"
           >
-            <!-- <li>
-              <router-link to="/home" class="nav-link text-white">
-                <BootstrapIcon
-                  class="bi d-block mx-auto mb-1"
-                  icon="house"
-                  size="2x"
-                />
-                Главная
-              </router-link>
-            </li> -->
             <li>
               <router-link to="/catalog" class="nav-link text-white">
                 <BootstrapIcon
@@ -69,17 +59,6 @@
                 Discord
               </a>
             </li>
-            <!--<li>
-              <router-link to="/players" class="nav-link text-white">
-                <BootstrapIcon
-                  class="bi d-block mx-auto mb-1"
-                  icon="people"
-                  size="2x"
-                />
-                <use xlink:href="#grid"></use>
-                Игрокам
-              </router-link>
-            </li> -->
           </ul>
         </div>
       </div>

@@ -14,15 +14,13 @@ const routes = [
     component: MainPage,
   },
   {
-    path: "/home",
-    component: MainPage,
-  },
-  {
     path: "/servers",
+    name: "servers",
     component: ServersPage,
   },
   {
     path: "/clients",
+    name: "client",
     component: ClientsPage,
   },
   {
@@ -31,6 +29,7 @@ const routes = [
   },
   {
     path: "/catalog",
+    name: "catalog",
     component: CatalogPAge,
   },
   {
